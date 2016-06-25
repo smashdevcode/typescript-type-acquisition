@@ -1,2 +1,2 @@
 
-# Typings
+# TypeScript Type Acquisition
