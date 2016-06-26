@@ -1,17 +1,11 @@
 
 # Notes
 
-Sounds like definition file acquisition is changing yet again:
-https://github.com/typings/typings/issues/223
 
-Here's discussion on how definition file discovery will work:
-https://github.com/Microsoft/TypeScript/issues/7156
 
-Here's another issue with very clear plans laid out:
-https://github.com/Microsoft/TypeScript/issues/8275
 
-NPM typings packages:
-https://www.npmjs.com/~types
+
+
 
 
 ## Misc
