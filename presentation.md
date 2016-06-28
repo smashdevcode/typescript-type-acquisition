@@ -1,45 +1,20 @@
 
 # Presentation
 
-
-
-## TODO
-
-* Test TS 2.0 workflow
-
-* Review Typings advanced options
- * Changing the global alias?
- * Specific version?
- * How can you have Typing search and install from local or private sources?
-  * Just mention that this option is available?
-
-* How does the Typings registry work?
- * Is this worth going deeper on?
-
-* Make this presentation friendlier for people who might be new to TypeScript
-* Also include some advanced(ish) demos and topics
-* Work up notes for demos
-* Rehearse and time
-
-
-
-
-## TypeScript Static Data Typing
+## Static Data Typing
 
 ### Why Do We Care?
 
-TypeScript allows for optional static data typing. Having static data typing vastly improves the development experience.
+* TypeScript allows for optional static data typing
+* Having static data typing vastly improves the development experience
 
-### Demo - Static Data Typing
-
-* Show examples of static data typing
-* Show why the `any` data type is useful, but ultimately limiting
+### Demo 1: Static Data Typing
 
 ## Type Acquisition
 
 ### What Is It?
 
-"Type acquisition" refers to the process or workflow of acquiring TypeScript declaration `d.ts` files for a TypeScript project.
+* "Type acquisition" refers to the process or workflow of acquiring TypeScript declaration `d.ts` files for a TypeScript project
 
 ### Why Do We Need It?
 
@@ -48,9 +23,9 @@ TypeScript allows for optional static data typing. Having static data typing vas
 
 ## Type Declaration Files
 
-## Five Examples
+### Five Examples
 
-Let's look at five examples when you'll need declaration files.
+* Let's look at five examples when you'll need declaration files
 
 ### Example 1 - Global Environment
 
@@ -97,20 +72,26 @@ Let's look at five examples when you'll need declaration files.
 * GitHub
 * NPM
 * Bower
+* and more!
 
 ## Type Acquisition History
 
 ### Manual
 
 * Search, download, and manually add to your project
+
+### Manual Pros/Cons
+
 * Pros: Easy to understand and learn
 * Cons: You had to commit your definition files to your repo, no tooling support
 
 ### TSD
 
-* Command line tool similar to `npm`
+* TSD is a package manager to search and install TypeScript definition files directly from the community driven DefinitelyTyped repository
 * Search, install typings from DefinitelyTyped repo
 * Ability to save type declaration file dependencies to `tsd.json` file
+
+### TSD Example
 
 ```
 $ tsd install jquery --save
@@ -126,130 +107,107 @@ $ tsd query "jquery.*"
 $ tsd install
 ```
 
+### TSD Pros/Cons
+
 * Pros: Relatively easy to understand and learn, allowed you to create a list of declaration file dependencies, you longer had to commit your `d.ts` files
 * Cons: Could only install declaration files from DefinitelyTyped, didn't work with module systems
 
-### Typings
+## Typings
+
+### What is It?
 
 * Evolutionary step from `tsd`
 * Search and install typings from Typings Registry, GitHub, NPM, Bower, HTTP and local files
 * Allows you to customize the alias for global typings
 * Allows you to work with typings as modules (instead of global)
 
+### Typings Pros/Cons
+
 * Pros: Support module systems, support for a variety of sources
 * Cons: More difficult to understand, poor documentation (at least initially)
 
-## Typings
+### Demo 2: Typings and Global Type Definitions
 
-### Demo - Basic Typings Usage
-
-```
-
-# Install Typings CLI utility
-npm install typings --global
-
-# Search for definitions
-typings search tape
-
-# If you use the package as a module:
-# Install non-global typings (defaults to "npm" source, configurable through `defaultSource` in `.typingsrc`)
-typings install debug --save
-
-# If you use the package through script tag, or it is part of the environment, or
-# the non-global typings is not yet available:
-typings install dt~mocha --global --save
-
-# Install typings from particular registry.
-typings install env~atom --global --save
-typings install npm~bluebird --save
-
-```
-
-### Demo - How Typings Works
-
-* Show the `typings.json` file
-* Show the `typings` folder
- * Don't commit this folder!
-* Show the Knockout declaration file
-* Show what it looks like after install with Typings
- * Via `npm` (modularized)
- * Via `dt` (global)
+### Demo 3: Typings and Module Scoped Type Definitions
 
 ### Advanced Features
 
 * Changing global alias
 * Installing specific version
- * See [https://github.com/typings/typings/blob/master/docs/registry.md](https://github.com/typings/typings/blob/master/docs/registry.md)
-
-### Integrating with NPM Workflow
 
 ```
-{
-  "scripts": {
-    "build": "rm -rf dist && tsc",
-    "prepublish": "typings install && npm run build"
-  }
-}
+typings install jquery@1.6 --name oldJ
 ```
 
+### Install Command
 
+```
+typings install [<name>=]<location>
 
+  <name>      Module name of the installed definition
+  <location>  The location to read from (described below)
 
+Valid Locations:
+  [<source>~]<pkg>[@<version>][#<tag>]
+  file:<path>
+  github:<org>/<repo>[/<path>][#<commitish>]
+  bitbucket:<org>/<repo>[/<path>][#<commitish>]
+  npm:<pkg>[/<path>]
+  bower:<pkg>[/<path>]
+  http(s)://<host>/<path>
 
+  <source>    The registry mirror: "npm", "bower", "env", "global", "lib" or "dt"
+              When not specified, `defaultSource` in `.typingsrc` will be used.
+  <path>      Path to a `.d.ts` file or `typings.json`
+  <host>      A domain name (with optional port)
+  <version>   A semver range (E.g. ">=4.0")
+  <tag>       The specific tag of a registry entry
+  <commitish> A git commit, tag or branch
+```
+
+See [https://github.com/typings/typings/blob/master/docs/commands.md](https://github.com/typings/typings/blob/master/docs/commands.md)
 
 ## TypeScript 2.0
 
-### Type Acquisition in TS 2.0
+### A New Hope
 
-See https://github.com/Microsoft/TypeScript/issues/9184
+* Third time's the charm?
+* See [https://github.com/Microsoft/TypeScript/issues/9184](https://github.com/Microsoft/TypeScript/issues/9184)
 
-* Why another change?
-* How does it work?
- * Install declaration files using `npm`
- * TS 2.0 compiler will now look in `node_modules/@types` folder for declaration files
-* What doesn't it do?
-* What if I don't want to change?
- * You can continue to use whatever workflow you use today
- * If the compiler can find your d.ts files today, it will be able to tomorrow
-* New `types` compiler option for providing a specific location for declaration files?
-* New `typeRoots` compiler option?
+### Why Another Change?
 
-### Try It Out Today
+* To make things easier, especially for new TypeScript developers
+* Nice to have an "official" workflow for acquiring declaration files
 
-Install the latest nightly build of TypeScript.
+### Demo 4: TypeScript 2.0
 
-```
-npm install -g typescript@next
-```
+### Somewhat Extensible
 
-Update your Visual Studio Code user setttings.
+* `typeRoots` will allow you to define additional package locations
 
-```
-// Specifies the folder path containing the tsserver and lib*.d.ts files to use.
-"typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
-```
+### What Doesn't It Do?
+
+* You cannot change the alias for global declaration files
+* Other complex or fringe use cases
+
+### You Can Ignore It!
+
+* You can continue to use whatever workflow you use today
+* If the compiler can find your `d.ts` files today, it will be able to tomorrow
+
+### Type Discovery
+
+* Search for types using [https://aka.ms/types](https://aka.ms/types)
 
 ### npm @typings
 
 * Automatically updated from DefinitelyTyped
 * See https://github.com/Microsoft/types-publisher
 
+### Thanks
 
+James Churchill
+Twitter: @SmashDev
+GitHub: smashdevcode
 
-
-
-
-
-### Module Resolution
-
-* See "Path mappings based module resolution" [https://github.com/Microsoft/TypeScript/issues/5039](https://github.com/Microsoft/TypeScript/issues/5039)
-
-### When You Don't Need Type Acquisition
-
-* Some packages ship with their own declaration files
-* If that's the case, the compiler will use those files (no effort required on your part)
-
-### Conflicting Versions of Declaration Files
-
-* What does this look like?
-* How to resolve
+[https://github.com/smashdevcode/typescript-type-acquisition](https://github.com/smashdevcode/typescript-type-acquisition)
