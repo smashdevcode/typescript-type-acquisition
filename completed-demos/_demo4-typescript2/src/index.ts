@@ -1,12 +1,4 @@
 
 import * as _ from 'lodash';
 
-let result = _.camelCase('asdf');
-
-// class Test {
-//   private constructor() {
-
-//   }
-// }
-
-// _.
+let result = _.camelCase('ASDF');

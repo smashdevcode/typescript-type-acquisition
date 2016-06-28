@@ -21,45 +21,6 @@
 * Almost every TypeScript project needs to consume and leverage code in third-party libraries or frameworks. Often, this code wasn't originally written in TypeScript, so the type information won't be included with the published code.
 * We need a way to easily find the correct type declaration file, download, and install it in our project.
 
-## Type Declaration Files
-
-### Five Examples
-
-* Let's look at five examples when you'll need declaration files
-
-### Example 1 - Global Environment
-
-* Packages that, when loaded, extend the global scope environment with a number of new functions, variables, classes, etc.
-* Example: mocha
-* Global type definition
-* Listed in the Typings Registry under `env`
-
-### Example 2 - Global Scripts
-
-* Packages that should be loaded using a script tag
-* Example: knockout
-* Global type definition
-* Listed in the Typings Registry under `global`
-
-### Example 3 - CommonJS Modules
-
-* Packages that should be loaded with a CommonJS compatible loader such as browserify or webpack
-* Example: knockout on npm
-* External module type definition using `export =`
-* Listed in the Typings Registry under `npm`
-
-### Example 4 - ES6 Modules
-
-* Packages written in ES6+
-* Example: ???
-* External module type definition using ES6 module syntax (default export and named export)
-
-### Example 5 - TypeScript Packages
-
-* Packages written in TypeScript and compiled to JavaScript with declaration .d.ts files
-* Example: RxJS 5 ([https://github.com/ReactiveX/rxjs](https://github.com/ReactiveX/rxjs))
-* No need to write a type definition (the declaration files included in the package should be automatically detected and used by the TypeScript compiler upon consumption of the package)
-
 ## Type Declaration Sources
 
 ### DefinitelyTyped
@@ -195,14 +156,14 @@ See [https://github.com/typings/typings/blob/master/docs/commands.md](https://gi
 * You can continue to use whatever workflow you use today
 * If the compiler can find your `d.ts` files today, it will be able to tomorrow
 
-### Type Discovery
-
-* Search for types using [https://aka.ms/types](https://aka.ms/types)
-
-### npm @typings
+### npm @types
 
 * Automatically updated from DefinitelyTyped
 * See https://github.com/Microsoft/types-publisher
+
+### Type Discovery
+
+* Search for types using [https://aka.ms/types](https://aka.ms/types)
 
 ### Thanks
 

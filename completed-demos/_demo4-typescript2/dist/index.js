@@ -1,7 +1,3 @@
-import * as _ from 'lodash';
-let result = _.camelCase('asdf');
-class Test {
-    constructor() {
-    }
-}
-// _.
+"use strict";
+var _ = require('lodash');
+var result = _.camelCase('ASDF');
